@@ -10,7 +10,7 @@
         type="text" 
         class="form-control"
         placeholder="Enter your username"
-        v-model="credentials.username"
+        v-model="credentials.mobile"
       >
     </div>
     <div class="form-group">
@@ -27,13 +27,14 @@
 
 <script>
 import auth from '../auth'
+import config from '../config'
 
 export default {
 
   data() {
     return {
       credentials: {
-        username: '',
+        mobile: '',
         password: ''
       },
       error: ''
@@ -43,13 +44,13 @@ export default {
   methods: {
 
     submit() {
-
+      
       var credentials = {
-        username: this.credentials.username,
+        mobile: this.credentials.mobile,
         password: this.credentials.password
       }
-
-      auth.login(this, credentials, 'secretquote')
+     
+      auth.login(this, credentials, 'account')
 
     }
   }
