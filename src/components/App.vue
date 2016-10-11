@@ -41,10 +41,11 @@ export default {
       this.showFooter = footer
     },
     showError: function(error) {
+	  console.info(22222)
       this.showError = error.error
       this.errorMsg = error.msg
       //this.$broadcast("setErrorMsg", error.msg);
-    },
+    }
 
   },
   methods: {
