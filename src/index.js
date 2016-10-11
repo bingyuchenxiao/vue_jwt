@@ -6,11 +6,19 @@ import SecretQuote from './components/SecretQuote.vue'
 import Signup from './components/Signup.vue'
 import Login from './components/Login.vue'
 import Account from './components/Account.vue'
+import Account2 from './components/account/Account.vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import auth from './auth'
+
 Vue.use(VueResource)
 Vue.use(VueRouter)
-import auth from './auth'
+var VueTouch = require('vue-touch')
+Vue.use(VueTouch)
+var VueValidator = require('vue-validator')
+Vue.use(VueValidator)
+
+
 
 Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
 
@@ -69,18 +77,29 @@ router.map({
                 name:'home',
                 component:Home
             },
+            '/account':{
+                name:'account',
+                component: (resolve) => require(['./components/Account.vue'],resolve)    
+                
+            },
             '/login':{
-                name:'login',
-                component:Login
-            }
+              name:'login',
+              component:(resolve) => require(['./components/Login.vue'],resolve)
+            },
         }
     },
     //没有页头
-    '/account':{
-        name:'account',
+    '/account2':{
+        name:'account2',
         component:Account
-    }
+    },
+    '/login2':{
+        name:'login',
+        component:(resolve) => require(['./components/Login.vue'],resolve)
+      },
 })
-
+router.redirect({
+  '*': '/home'
+})
 router.start(Index, '#app')
 

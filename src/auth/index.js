@@ -1,8 +1,8 @@
 import {router} from '../index'
 import config from '../config'
 
-const API_URL = 'http://127.0.0.1/fmagento/'
-const LOGIN_URL = API_URL + 'mobile/v4/index/uri/customer.account.userLoginWithPhone'
+const API_URL = 'http://127.0.0.1/magento2016/mobile/v3/index/'
+const LOGIN_URL = API_URL + 'uri/customer.account.userLoginWithPhone'
 const SIGNUP_URL = API_URL + 'users/'
 
 export default {
@@ -14,12 +14,9 @@ export default {
 
   login(context, creds, redirect) {
     //  alert(this.vm)
-    //  return
-    context.$http.get(LOGIN_URL, creds, (data) => {
-      //  alert(vm.navbar)
-      //  vm.navbar = 0
-      //  alert(vm.navbar)
-      //  return
+    //console.info(context)
+    
+    context.$http.post(LOGIN_URL, creds, (data) => {
       if(data.result == '0'){
         alert(data.errorMsg); 
         return; 

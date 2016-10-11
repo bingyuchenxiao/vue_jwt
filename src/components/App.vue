@@ -1,32 +1,52 @@
 <template>
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <ul class="nav navbar-nav">
-        <li><a v-link="{path:'/home',activeClass:'active'}">Home</a></li>
-        <li><a v-link="'login'" v-if="!user.authenticated">Login</a></li>
-        <li><a v-link="'signup'" v-if="!user.authenticated">Sign Up</a></li>
-        <li><a v-link="'secretquote'" v-if="user.authenticated">Secret Quote</a></li>
-        <li><a v-link="'login'" v-if="user.authenticated" @click="logout()">Logout</a></li>
-      </ul>
-    </div>    
-  </nav>
   <div class="container">
     <router-view></router-view>
   </div>
+
+  <Footers v-if="showFooter"></Footers>
+  <Error v-if="showError" :error-msg.sync="errorMsg"></Error>
+
 </template>
 
 <script>
 import auth from '../auth'
 import config from '../config'
-
+import footer from './page/Footer.vue'
+import error from './page/Error.vue'
+import {Vue} from '../index'
+ /*Vue.component("child", {
+    //声明props属性
+    props: ['msg'],
+    //props可以用在模板内
+    //可以用"this.msg"设置
+    template: '<div>msg: {{msg}}</div>'
+});*/
 export default {
   data() {
     return {
+      //showError:false,
+      showFooter: false,
+      errorMsg: '',
       user: auth.user,
       navbar: config.page.navbar
     }
   },
+  components:{
+      Footers: footer,
+      Error: error
+  },
+  events: {
+    //分发事件到vm实例中， 在创建实例时 `events` 选项简单地调用 `$on`
+    showFooter: function(footer) {
+      this.showFooter = footer
+    },
+    showError: function(error) {
+      this.showError = error.error
+      this.errorMsg = error.msg
+      //this.$broadcast("setErrorMsg", error.msg);
+    },
 
+  },
   methods: {
 
     logout() {

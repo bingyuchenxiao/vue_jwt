@@ -6,6 +6,7 @@ module.exports = {
     path: __dirname + '/build/',
     publicPath: 'build/',
     filename: 'build.js'
+    // chunkFilename: "chunks/[name]-[chunkhash:8].js"
   },
   // how modules should be transformed
   module: {
@@ -15,7 +16,10 @@ module.exports = {
       // process *.js files using babel-loader
       // the exclude pattern is important so that we don't
       // apply babel transform to all the dependencies!
-      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ }
+      { test: /\.css$/, loader: 'style-loader!css-loader', exclude: /node_modules/ },
+      { test: /\.(gif|png|jpg)$/, loader: 'url-loader?limit=8192&name=assets/images/[name].[ext]' },
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+      { test: /\.html$/, loader: 'babel', exclude: /node_modules/ }
     ]
   },
   // configure babel-loader.
@@ -23,5 +27,8 @@ module.exports = {
   babel: {
     presets: ['es2015'],
     plugins: ['transform-runtime']
-  }
+  },
+  plugins: [
+    // new Webpack.optimize.CommonsChunkPlugin("common.js")
+  ]
 }
