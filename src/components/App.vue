@@ -24,7 +24,7 @@ import {Vue} from '../index'
 export default {
   data() {
     return {
-      //showError:false,
+      showError:false,
       showFooter: false,
       errorMsg: '',
       user: auth.user,

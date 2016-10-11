@@ -63,7 +63,6 @@ export default {
     login(){
       var that = this
       this.$validate(true,function(){
-    
         if(that.$validation1.mobile.required){
           that.$dispatch("showError", {"msg":"请填写手机号码","error":true})
           return
@@ -82,12 +81,13 @@ export default {
           that.$dispatch("showError", {"msg":"密码长度不能小于6位","error":true})
           return
         }
+        var credentials1 = {
+          mobile: that.mobile,
+          password: that.password
+        }
+        auth.login(that, credentials1, 'account')
       })
-      var credentials1 = {
-        mobile: this.mobile,
-        password: this.password
-      }
-      auth.login(this, credentials1, 'account')
+      
     },
     post(){
       console.info(333)
