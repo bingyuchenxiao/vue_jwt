@@ -14,7 +14,6 @@ export default {
   },
 
   login(context, creds, redirect) {
-    //  alert(this.vm)
     //console.info(context)
     
     context.$http.post(LOGIN_URL, creds, (data) => {
