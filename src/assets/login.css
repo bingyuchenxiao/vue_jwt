@@ -1,0 +1,62 @@
+/*登录*/
+.login{
+	padding: 5% 5%;
+	//background: url('images/bak.jpg') 100% 100%;
+	//background-size: cover;
+}
+.login .link span{
+	display: inline-block;
+	width: 33%;
+	text-align: center;
+}
+.link span:nth-child(1){
+	text-align: left;
+}
+.link span:nth-child(3){
+	text-align: right;
+}
+.cform{
+	padding:15% 10%;
+}
+.cform p span{
+	display: inline-block;
+	width: 50%;
+	text-align: center;
+}
+.cform p span:nth-child(1){
+	border-right: 1px solid #D1D1C7;
+}
+.cform p a{
+	color:#585856;
+	padding: 6px;
+	text-decoration: none;
+}
+.cform p a.active{
+	color:#469C2E;
+	border-bottom: 2px solid #469C2E;
+}
+form{
+	padding-top: 10%;
+}
+form input{
+	border-radius: 10px;
+	box-shadow: none;
+}
+form input:nth-child(1){
+	margin-bottom: 5%;
+}
+form input:focus{
+	border:1px solid #469C2E;
+}
+form .fbnt{
+	margin-top: 10%;
+	width: 100%;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: none;
+	padding: 2.3%;
+	color: #585856;
+}
+
+
+    
