@@ -1,7 +1,8 @@
 import {router} from '../index'
 import config from '../config'
 
-const API_URL = 'http://127.0.0.1/magento2016/mobile/v3/index/'
+
+const API_URL = 'http://test1.freshfresh.com/mobile/v4/index/'
 const LOGIN_URL = API_URL + 'uri/customer.account.userLoginWithPhone'
 const SIGNUP_URL = API_URL + 'users/'
 
@@ -18,8 +19,9 @@ export default {
     
     context.$http.post(LOGIN_URL, creds, (data) => {
       if(data.result == '0'){
-        alert(data.errorMsg); 
-        return; 
+		  console.info({"msg":data.errorMsg,"error":true})
+		this.$dispatch("showError", {"msg":data.errorMsg,"error":true})
+        return
       }
       // localStorage.setItem('id_token', data.data.userToken)
       // localStorage.setItem('user', data.data)
